@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+    
+    <bean id="userDao" class="aop.dao.impl.UserDaoImpl"/>
+    
+    <bean id="userService" class="aop.dao.impl.UserServiceImpl">
+    	<property name="userDao" ref="userDao"/>
+    </bean>
+    
+    <bean id="theLogger" class="aop.logger.UserServiceLogger"/>
+    
+    <aop:config>
+    	<!--  书写具体方法切入点的定义
+    	<aop:pointcut expression="execution(public void saveUser(aop.pojo.UserD ))" id="myPoint"/>
+    	-->
+    	<!--  这个*就代表所有的返回类型都支持 
+    	<aop:pointcut expression="execution(public * saveUser(aop.pojo.UserD ))" id="myPoint"/>
+    	 -->
+    	<!-- 所有的无返回值方法都支持 
+    	<aop:pointcut expression="execution(public void *(aop.pojo.UserD ))" id="myPoint"/>
+    	-->
+    	<!--aop. service包以及它的子包里面的所有方法并且方法中的参数不受限制的支持-->
+    	<aop:pointcut expression="execution(*aop.service..*.*(..))" id="myPoint"/>
+    	
+    	<aop:aspect ref="theLogger">
+    		<aop:before method="before" pointcut-ref="myPoint"/>
+    		<aop:after-returning method="after" pointcut-ref="myPoint" returning="result"/>
+    	</aop:aspect>
+    	
+    </aop:config>
+    
+</beans> 
