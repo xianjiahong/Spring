@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="t" class="day2.pojo.Teacher" p:id="1" p:tname="老王"/>
+   	<bean id="user" class="day2.pojo.User"> 
+   		<!--  <property name="name" value="zhangsan"/> -->
+   		<constructor-arg index="0" name="name" type="String" value="张三"/>
+   		<constructor-arg name="age">
+   			<value>18</value>
+   		</constructor-arg>
+   		<constructor-arg name="address" value="四川巴中"/>
+   		<constructor-arg>
+   			<ref bean="t"/>
+   		</constructor-arg>
+   		
+   	</bean>
+    
+    <bean id="user1" class="day2.pojo.User" p:name="李四" p:age="20" p:address="四川巴中" p:ref="t"></bean>
+    
+    <bean id="userDao" class="day2.dao.impl.UserDaoImpl"/>
+    
+    <bean id="userService" class="day2.service.impl.UserServiceImpl" p:dao-ref="userDao"/>
+    
+    
+    
+    
+    
+    
+</beans> 

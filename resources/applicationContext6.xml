@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+    
+    <bean id="userDao" class="day2.dao.impl.UserDaoImpl"/>
+    <bean id="userService" class="day2.service.impl.UserServiceImpl">
+    	<property name="userDao" ref="userDao"/>
+    </bean>
+    <bean id="throwLogger" class="day2.boost.ErrorLogger"/>
+    <aop:config>
+    	<aop:pointcut expression="execution(* day2..*.*(..))" id="myPoint"/>
+    	<aop:aspect ref="throwLogger">
+    		<aop:after-throwing method="aterThrowing" pointcut-ref="myPoint" throwing="e"/>
+    	</aop:aspect>
+    	
+    </aop:config>
+    
+    
+    
+    
+    
+</beans> 

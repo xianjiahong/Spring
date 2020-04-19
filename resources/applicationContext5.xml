@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+    <bean id="user" class="day2.pojo.User" p:name="zahngsan" p:age="18" p:address="哈哈哈" />
+    <bean id="entity" class="day2.pojo.TestEntity">
+    	<property name="specialCharacter1">
+    		<value><![CDATA[P&G]]></value>
+    	</property>
+    	<property name="specialCharacter2">
+    		<value>P&amp;G</value>
+    	</property>
+    	
+    	<property name="innerBean">
+    		<!--  <bean class="day2.pojo.User" p:name="zahngsan" p:age="18" p:address="哈哈哈" />
+    		-->
+    		<!--  <ref bean="user" />
+    		 -->
+    		 <!--  <ref local="user" />
+    		 -->
+    	</property>
+    	
+    	<property name="list">
+    		<list>
+    			<value>ahha</value>
+    			<value>asdf</value>
+    		</list>
+    	</property>
+    	<property name="array">
+    		<array>
+    			<value>1234</value>
+    			<value>3214</value>
+    		</array>
+    	</property>
+    	<property name="set">
+    		<set>
+    			<value>147852</value>
+    			<value>258741</value>
+    		</set>
+    	</property>
+    	<property name="map">
+    		<map>
+    			<entry>
+    				<key><value>teacher</value></key>
+    				<value>老师</value>
+    			</entry>
+    		</map>
+    	</property>
+    	
+    	<property name="props">
+    		<props >
+    			<prop key="driver">com.mysql.jdbc.Driver</prop>
+    			<prop key="url">jdbc:mysql://location:3306/test</prop>
+    		</props>
+    	</property>
+    	
+    	<property name="emptyValue">
+    		<value></value>
+    	</property>
+    	
+    	<property name="nullValue">
+    		<null/>
+    	</property>
+    </bean>
+    
+    
+    
+</beans> 
